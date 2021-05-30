@@ -1,0 +1,218 @@
+﻿<Window x:Class="WpfApp4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4" xmlns:shell="http://schemas.microsoft.com/netfx/2009/xaml/presentation" xmlns:System="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow"  ResizeMode="CanResizeWithGrip" AllowsTransparency="True"  Margin="0" Padding="0" MinWidth="332" MinHeight="507" WindowStyle="None" Height="507" Width="332"  Background="White">
+
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome CaptionHeight="30"
+                            ResizeBorderThickness="2" />
+    </shell:WindowChrome.WindowChrome>
+    
+    <Window.Resources>
+     
+    </Window.Resources>
+    
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="2.5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid Background="LightGray" Grid.Row="0"  x:Name="grid1"  Height="35">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontFamily="Arial" Grid.Column="0" VerticalAlignment="Center" FontSize="13" Margin="10,6,9.333,6" Height="18">Калькулятор</TextBlock>
+                <StackPanel  Orientation="Horizontal" Name="stack1" WindowChrome.IsHitTestVisibleInChrome="True"  HorizontalAlignment="Right" Grid.Column="1" >
+                    <Button Style="{StaticResource butOff}" x:Name="Svernut" Click="Svernut_Click">
+                        <Image Source="icons/Subtrack.png" Width="18" />
+                    </Button>
+                    <Button Style="{StaticResource butOff}" x:Name="Rasshirait" Click="Rasshirait_Click">
+                        <Image Source="icons/Rectange.png" Width="18" />
+                    </Button>
+                    <Button Style="{StaticResource butOff}" x:Name="Zakrit" Click="Zakrit_Click">
+                        <Image Source="icons/Close.png" Width="18" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+
+        <StackPanel Margin="0" Grid.Row="1">
+            <DockPanel LastChildFill="True">
+                <StackPanel  Orientation="Horizontal" Height="40" >
+                    <Button Style="{StaticResource butMenu}" x:Name="MenuOn" Click="MenuOn_Click" >
+                            <Image Source="icons\Menu.png" Width="18"/>
+                        </Button>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"  FontWeight="Bold" Margin="10,0,10,0">Обычный</TextBlock>
+                    
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right" Height="40" >
+                        <Button x:Name="HistoryButton" Click="HistoryButton_Click" Style="{StaticResource butMenu}" >
+                            <Image Source="icons\History.png" Width="22"/>
+                        </Button>
+                    </StackPanel>
+            </DockPanel>
+            <StackPanel HorizontalAlignment="Right">
+                <TextBlock Name="OldNumber" Text="{Binding OldNumberStr}" Margin="0 0 10 0" Style="{StaticResource AllTextBlock}" HorizontalAlignment="Right"></TextBlock>
+                <Viewbox Stretch="Uniform" Height="66" HorizontalAlignment="Right">
+                    <TextBox IsReadOnly="True" Name="NewNumber" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="{Binding Numbers}" Margin="0 8 5 10" FontFamily="Arial" FontSize="45" BorderThickness="0" TextChanged="NewNumber_TextChanged"></TextBox>
+                </Viewbox>
+            </StackPanel>
+          
+        </StackPanel>
+        <UniformGrid Columns="6" Rows="1"  Grid.Row="2">
+            <Button Style="{StaticResource butsM}">MC</Button>
+            <Button Style="{StaticResource butsM}">MR</Button>
+            <Button Style="{StaticResource butsM}">M+</Button>
+            <Button Style="{StaticResource butsM}">M-</Button>
+            <Button Style="{StaticResource butsM}">MS</Button>
+            <Button Margin="6 0 6 0"  Style="{StaticResource butsM}">M^</Button>
+        </UniformGrid>
+        <UniformGrid Margin="5" Columns="4" Rows="6" DockPanel.Dock="Bottom" Grid.Row="3">
+            <Button Style="{StaticResource butSquareAndProtsent}">
+                <TextBlock Style="{StaticResource TextForCal}">%</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCal}" Command="{Binding ComClearCE}">
+                <TextBlock Style="{StaticResource TextForCal}">CE</TextBlock>
+            </Button>
+            <Button Command="{Binding ComClear}" Style="{StaticResource butCal}">
+                <TextBlock Style="{StaticResource TextForCal}">C</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCal}" Command="{Binding Del}" >
+                <Image Source="icons/Clear.png" Style="{StaticResource imgsCal}"></Image>
+            </Button>
+            <Button Style="{StaticResource butSquareAndProtsent}">
+                <TextBlock Style="{StaticResource TextForCal}">½</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butSquareAndProtsent}">
+                <Image Style="{StaticResource imgsCal}" Source="icons/Square.png" ></Image>
+            </Button>
+            <Button Style="{StaticResource butSquareAndProtsent}"  >
+                <Image Style="{StaticResource imgsCal}" Source="icons/Root.png" ></Image>
+            </Button>
+            <Button Style="{StaticResource butCalculate}">
+                <Image Style="{StaticResource imgsCal}" Source="icons/Divide.png"></Image>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}">
+                <TextBlock Style="{StaticResource AllTextBlock}">7</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}">
+                <TextBlock Style="{StaticResource TextForCal}">8</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}" >
+                <TextBlock Style="{StaticResource TextForCal}">9</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalculate}">
+                <TextBlock Style="{StaticResource TextForCal}">x</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}">
+                <TextBlock Style="{StaticResource TextForCal}">4</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}">
+                <TextBlock Style="{StaticResource TextForCal}">5</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}">
+                <TextBlock Style="{StaticResource TextForCal}">6</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalculate}" >
+                <TextBlock Style="{StaticResource TextForCal}">-</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}" >
+                <TextBlock Style="{StaticResource TextForCal}">1</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}">
+                <TextBlock Style="{StaticResource TextForCal}">2</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}" >
+                <TextBlock Style="{StaticResource TextForCal}">3</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCalculate}" >
+                <TextBlock Style="{StaticResource TextForCal}">+</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butSquareAndProtsent}" >
+                <Image Style="{StaticResource imgsCal}" Source="icons/PLus.png" ></Image>
+            </Button>
+            <Button Style="{StaticResource butCalNumbers}" >
+                <TextBlock Style="{StaticResource TextForCal}">0</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butSquareAndProtsent}" >
+                <TextBlock Style="{StaticResource TextForCal}">,</TextBlock>
+            </Button>
+            <Button Style="{StaticResource butCal}" Command="{Binding EqualCom}" >
+                <TextBlock Style="{StaticResource TextForCal}">=</TextBlock>
+            </Button>
+        </UniformGrid>
+
+
+
+        <Grid Grid.Row="1" Grid.RowSpan="3" Name="GridMenu" Background="LightGray" HorizontalAlignment="Left" Width="0">
+            <StackPanel>
+                <Button x:Name="MenuOff" Click="MenuOff_Click" Style="{StaticResource butMenu}" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Image Source="icons\Menu.png" Width="18"/>
+                </Button>
+                <TextBlock Text="Калькулятор" Style="{StaticResource TextForCal}" Margin="9 15 0 0" FontWeight="Bold"/>
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Hidden" Background="Transparent" Margin="0 10 0 0" BorderThickness="0" >
+                    <ListViewItem>
+                        <Grid>
+                            <StackPanel Style="{StaticResource menuStackPanel}">
+                                <Image Source="icons/Calculator.png" Style="{StaticResource  menuImgs}"/>
+                                <TextBlock Style="{StaticResource menuTexts}" Text="Обычный"/>
+                            </StackPanel>
+                        </Grid>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <Grid>
+                            <StackPanel  Style="{StaticResource menuStackPanel}">
+                                <Image Style="{StaticResource  menuImgs}" Source="icons/Engineer.png"/>
+                                <TextBlock Style="{StaticResource menuTexts}" Text="Инженерный"/>
+                            </StackPanel>
+                        </Grid>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <Grid>
+                            <StackPanel Style="{StaticResource menuStackPanel}">
+                                <Image Style="{StaticResource  menuImgs}" Source="icons/Programming.png"/>
+                                <TextBlock Style="{StaticResource menuTexts}" Text="Программист"/>
+                            </StackPanel>
+                        </Grid>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <Grid>
+                            <StackPanel Style="{StaticResource menuStackPanel}">
+                                <Image Style="{StaticResource  menuImgs}" Source="icons/Calendar.png"/>
+                                <TextBlock Style="{StaticResource menuTexts}" Text="Вычисление даты"/>
+                            </StackPanel>
+                        </Grid>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+               
+        </Grid>
+        <Grid Grid.Row="3" Background="White" VerticalAlignment="Bottom" Height="0" x:Name="GridHistory">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ListBox BorderThickness="0" Grid.Row="0" ItemsSource="{Binding HistoryNumbers}" SelectedItem="{Binding SelectedClass}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate >
+                        <StackPanel Margin="10">
+                            <TextBlock Text="{Binding Path=OldNum,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                            <TextBlock FontSize="20" Text="{Binding Path=Nums,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Command="{Binding ClearHistory}" Grid.Row="1" FontFamily="Arial" HorizontalAlignment="Right"  Width="70">Очистить</Button>
+        </Grid>
+        
+    </Grid>
+</Window>
